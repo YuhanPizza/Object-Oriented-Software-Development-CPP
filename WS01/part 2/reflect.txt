@@ -1,0 +1,38 @@
+/*
+*****************************************************************************
+			Workshop - #1
+Full Name  :Lorenz Alvin Tubo
+Student ID#:109934224
+Email      :ltubo@myseneca.ca
+
+Authenticity Declaration:
+I have done all the coding by myself and only copied the code that my
+professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+
+1.What I have Learned?
+During this workshop, I practiced my understand of external and internal linkage.
+
+External Linkage: 
+	External linkage is a type of linkage that can be used not only in declared files 
+	but also in other external modules.
+	When declaring external linkage you use the keyword "extern". For example, in this workshop, 
+	I declared the extern double g_taxrate; and extern double g_dailydiscount; variables in foodorder.h 
+	file to use both as global variables. 
+
+Internal Linkage:
+	Meanwhile, internal linkage can only be used within declared bounds opposite to external linkage.
+	Meaning internal linkage is not available to external files. Internal linkage is declared using the keyword "static".
+	I used static keyword to implement the “counter” variable in the display function. 
+	Because I had to keep track of how many times the display function was called and increasing its value every time. 
+	Because of using the static keyword the variables value was able to stay even after the function went out of scope.
+
+2.Changes from part 1 to part 2.
+	The changes that I implemented in this workshop for part 2 was that to make the food description or for my instance 
+	"food" dynamically allocated. In order to do this I made a temporary local variable of size 60 fDesc or short for foodDescription
+	to store the istream input retrieved. I then created a void return function called setFood which takes in fDesc to dynamically 
+	allocate memory to food depending on its size inorder to check its size i stored its value in a local variable called length by 
+	int length = strlen(g_Desc) and then dynamically allocating memory to food with this length food = new chart[length + 1]
+	after this you can either just go strcpy(food,g_Desc) or create a loop inorder to copy all members of g_Desc char array to 
+	food char array. I also made sure to create a copy constructor and a Destructor. 
