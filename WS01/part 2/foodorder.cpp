@@ -12,9 +12,9 @@ professor provided to complete my workshops and assignments.
 */
 #define _CRT_SECURE_NO_WARNINGS
 #include <cstring>
+#include <string>
 #include <iostream>
 #include <iomanip>
-#include <fstream>
 #include "foodorder.h"
 
 
@@ -23,15 +23,6 @@ double g_taxrate = 0;
 double g_dailydiscount = 0;
 static int counter = 1;
 namespace sdds {
-
-	//default constructor
-	FoodOrder::FoodOrder() {
-		food = nullptr;
-		name[60] = {'\0'};
-		price = { 0.0 };
-		special = false;
-	};
-
 	//sets object to safe empty state
 	void FoodOrder::safeEmpty() {
 		food = nullptr;
@@ -44,12 +35,12 @@ namespace sdds {
 	void FoodOrder::read(istream& in) {
 		if (in) { //if gucci
 			char a = 'N';
-			char fDesc[60];
+			string fDesc{};
 			in.getline(name, 60, ',');
 			if (in) {
-				in.getline(fDesc, 60, ',');
+				getline(in,fDesc,',');
 				if (in) {
-					setFood(fDesc);
+					setFood(fDesc.c_str());
 					in >> price;
 					in.ignore();
 					in >> a;
@@ -110,7 +101,7 @@ namespace sdds {
 				strcpy(name, right.name);  //store right.name to current object.name
 				if (right.food[0] != '\0') { //if right.food exists 
 					food = new char[strlen(right.food) + 1];
-					strcpy(food, right.food); //store right.food to current object.name
+					this->setFood(right.food); //store right.food to current object.name
 					if (right.price != 0) {
 						price = right.price;
 						special = right.special;
@@ -129,18 +120,19 @@ namespace sdds {
 		delete[]food;
 		safeEmpty();
 	}
+	//created this as to pinpoint certain errors I had.
 	void FoodOrder::setFood(const char* g_desc) {
 		if (g_desc != nullptr) {
 			int length = strlen(g_desc);
-			if (food) {  // just to make extra sure i know i know its like wasted lines but i went crazy 
+			if (food) {  // just to make extra sure its really empty
 				delete[]food;
 				food = nullptr;
 			}
 			food = new char[length + 1];
-			for (int i = 0; i < length; i++) { //dont judge me i went crazy looking for that leak okay?
+			for (int i = 0; i < length; i++) { //1 by 1 transfer.
 				food[i] = g_desc[i];
 			}
-			food[length] = '\0'; //i like to place this manually dont trust no strcpy 
+			food[length] = '\0'; //manually placed the null terminator 
 		}
 		else {
 			delete[]food;

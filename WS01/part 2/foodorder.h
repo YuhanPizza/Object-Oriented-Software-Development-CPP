@@ -21,24 +21,26 @@ extern double g_dailydiscount;
 
 namespace sdds {
 	class FoodOrder {
-		char* food;
-		char name[60];
-		double price;
-		bool special;
+		char* food{};
+		char name[10]{};
+		double price{};
+		bool special{};
+		void setFood(const char* g_desc);
+		void safeEmpty(); //safe Empty state
 	public:
-		FoodOrder(); //default constructor
+		FoodOrder() = default; //default constructor
 
 		//Rule of Three
 		FoodOrder(const FoodOrder& src); //overloaded Constructor
 		FoodOrder& operator=(const FoodOrder& right); //assignment Operator
 		~FoodOrder(); //destructor
-		void setFood(const char* g_desc);
+		
 
 		void read(std::istream& in = std::cin); //istreamObject
 
 		void display()const; //display method
 
-		void safeEmpty(); //safe Empty state
+		
 		
 	};
 }
