@@ -1,0 +1,70 @@
+﻿  w2_p1.cpp
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(14,21): error C2871: 'sdds': a namespace with this name does not exist
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(35,2): error C2653: 'sdds': is not a class or namespace name
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(35,8): error C2065: 'TimedTask': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(35,18): error C2146: syntax error: missing ';' before identifier 't'
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(35,18): error C2065: 't': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(37,3): error C2065: 't': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(38,3): error C2653: 'sdds': is not a class or namespace name
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(38,9): error C2065: 'ProteinDatabase': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(38,25): error C2146: syntax error: missing ';' before identifier 'protein_DBA'
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(38,25): error C2065: 'protein_DBA': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(39,3): error C2065: 't': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(40,3): error C2065: 't': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(42,23): error C2065: 'protein_DBA': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(43,58): error C2065: 'protein_DBA': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(44,58): error C2065: 'protein_DBA': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(45,58): error C2065: 'protein_DBA': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(46,58): error C2065: 'protein_DBA': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(46,70): error C2065: 'protein_DBA': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(47,58): error C2065: 'protein_DBA': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(47,70): error C2065: 'protein_DBA': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(50,3): error C2065: 't': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(51,3): error C2065: 'ProteinDatabase': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(51,19): error C2146: syntax error: missing ';' before identifier 'protein_DBB'
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(51,19): error C3861: 'protein_DBB': identifier not found
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(52,3): error C2065: 't': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(53,3): error C2065: 't': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(55,23): error C2065: 'protein_DBB': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(56,58): error C2065: 'protein_DBB': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(57,58): error C2065: 'protein_DBB': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(58,58): error C2065: 'protein_DBB': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(59,58): error C2065: 'protein_DBB': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(59,70): error C2065: 'protein_DBB': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(60,58): error C2065: 'protein_DBB': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(60,70): error C2065: 'protein_DBB': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(63,3): error C2065: 't': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(64,3): error C2065: 'ProteinDatabase': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(64,19): error C2146: syntax error: missing ';' before identifier 'protein_DBC'
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(64,19): error C2065: 'protein_DBC': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(64,32): error C2065: 'protein_DBB': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(65,3): error C2065: 't': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(66,3): error C2065: 't': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(68,23): error C2065: 'protein_DBC': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(69,58): error C2065: 'protein_DBC': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(70,58): error C2065: 'protein_DBC': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(71,58): error C2065: 'protein_DBC': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(72,58): error C2065: 'protein_DBC': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(72,70): error C2065: 'protein_DBC': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(73,58): error C2065: 'protein_DBC': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(73,70): error C2065: 'protein_DBC': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(76,3): error C2065: 't': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(77,3): error C2065: 'protein_DBA': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(77,17): error C2065: 'protein_DBB': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(78,3): error C2065: 't': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(79,3): error C2065: 't': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(81,23): error C2065: 'protein_DBA': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(82,58): error C2065: 'protein_DBA': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(83,58): error C2065: 'protein_DBA': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(84,58): error C2065: 'protein_DBA': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(85,58): error C2065: 'protein_DBA': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(85,70): error C2065: 'protein_DBA': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(86,58): error C2065: 'protein_DBA': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(86,70): error C2065: 'protein_DBA': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(89,3): error C2065: 't': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(91,2): error C2065: 't': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(92,2): error C2065: 't': undeclared identifier
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\part 1\w2_p1.cpp(94,15): error C2065: 't': undeclared identifier
+  ProteinDatabase.cpp
+  TimedTask.cpp
+  Generating Code...

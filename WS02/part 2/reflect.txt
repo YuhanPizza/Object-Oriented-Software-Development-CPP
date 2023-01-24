@@ -1,0 +1,35 @@
+/*
+*****************************************************************************
+			Workshop - #2
+Full Name  :Lorenz Alvin Tubo
+Student ID#:109934224
+Email      :ltubo@myseneca.ca
+
+Authenticity Declaration:
+I have done all the coding by myself and only copied the code that my
+professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+---fstream and seekg---
+
+      > I had the opportunity to review about the "fstream" library and its members which was covered last semester.
+	I used the "getline" function to read the file line by line and save the value in a string variable and if
+	the first member of that string is '>' the code should increment the counter variable (which is also used 
+	as an index in some parts of the code ).However since we read over the file inorder to allocate the size 
+	of the string array we still needed to store the value of the string array from the fstream object inorder 
+	to do that we have to implement "seekg" function to go back to the beginning of the file.
+	This moves the file position indicator to the first part of the file  to read the same file again. 
+
+---Move Operator and Constructor---
+
+      > The implementation of the move semantics. The "move()" function is not a function its more like a converter, it converts an expression from
+	lvalue and changes it to rvalue.
+
+      > For the move constructor the way I implement the code is to use "&&" in the parameters because it is a rvalue reference declarator.
+
+---WHY IS IT BETTER TO USE MOVE?--- 
+
+      > using move operator and constructor which receives rvalue as a reference, is noticeably faster than copy constructor and operator. 
+	This is because the copy constructor maintains the original data and deep copies all of the data one by one. However, the move 
+	constructor receives the address value of the original data. As a result, the moving constructor is fast in terms of speed 
+	because unlike the copy constructor, it does not reallocate memory.
