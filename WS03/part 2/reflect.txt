@@ -1,0 +1,59 @@
+/*
+*****************************************************************************
+			Workshop - #3
+Full Name  :Lorenz Alvin Tubo
+Student ID#:109934224
+Email      :ltubo@myseneca.ca
+
+Authenticity Declaration:
+I have done all the coding by myself and only copied the code that my
+professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+
+
+//The reason for specializing the add() member function: 
+	>The add() function is specialized for T=double in the Set module because the specification requires 
+	 the Set to not contain duplicates, but for type double, two numbers are considered the same if their 
+	 difference in absolute value 'fabs()' is smaller or equal to 0.01. This requires a specialized add() 
+	 function as the normal comparison of two double values would not be sufficient to determine if they 
+	 are the same or not.
+
+
+//The reason for defining the class variable outside the class definition: 
+	>Within Collection class templates, the static class variable m_dummy is defined outside the actual 
+	 class definition in order to guarantee its distinctiveness and shared accessibility among all instances. 
+	 the said variable's purpose is to serve as a return value for subscript operator[] if ever the index 
+	 provided surpasses the boundaries of any one of these Collection Template instances.
+
+//The reason for deriving the Set class from Collection<T, 100>: 
+	>The Set class is derived from Collection<T, 100> because the Set class has to have 
+	 a fixed capacity of 100 items and the Collection<T, 100> provides the necessary functionality which set also
+	 overloads the virtual function from collection add(), and can also access the public functions inside of Collection like 
+	 accessors getKey() and getValue(). By deriving the Set from Collection<T, 100>, the Set 
+ 	 can inherit these functionalities, saving the time and effort of having to reimplement them, while also 
+	 ensuring compatibility and consistency with the Collection<T, 100> module.
+
+
+//Why was it Necessary to add the following functions?
+//bool operator==(const Pair& other) const: 
+	>The overloaded equality operator compares the m_key member variable of the current object and the 
+	 "other.m_key" instance recieved in the parameter and returns true if they are equal.
+
+//std::ostream& operator<<(std::ostream& os, const Pair& m_item): 
+	>The overloaded output operator writes the key and value of the given pair object to an output stream, 
+	 with the key left-aligned and the value right-aligned. With them being accessible because of the public accessor functions getkey() 
+	 and getValue().
+
+
+//WHY CANT WE DEFINE A TEMPLATE IN A .CPP FILE? 
+	 >A template is not a class or a function. A template is a “pattern” that the compiler uses to generate a family of classes or functions.
+	 In order for the compiler to generate the code, it must see both the template definition (not just declaration) and the specific types/whatever
+	 used to “fill in” the template. For example, if you’re trying to use a Collection<Pair, 100>, the compiler must see both the Collection templates 
+	 and the fact that you’re trying to make a specific Collection<Pair,100>, Your compiler probably doesn’t remember the details of one .cpp file while 
+	 it is compiling another .cpp file. It could, but most do not. That is why Collection.h and Set.h are defined and declared in the header.
+
+//WHY WE CREATE A VIRTUAL DESTRUCTOR IN COLLECTION?
+	 >In simple terms, a virtual destructor ensures that when derived subclasses go out of scope or are deleted the order of destruction of each class 
+	 in a hierarchy is carried out correctly. And in terms of Dynamic memory allocation when the order of the class objects is incorrect it can 
+	 lead to a memory leak.
