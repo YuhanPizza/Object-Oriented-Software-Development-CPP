@@ -1,0 +1,103 @@
+/*
+*****************************************************************************
+			Workshop - #4
+Full Name  :Lorenz Alvin Tubo
+Student ID#:109934224
+Email      :ltubo@myseneca.ca
+
+Authenticity Declaration:
+I have done all the coding by myself and only copied the code that my
+professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+
+Relationship between Child and Toy:
+
+>The Child class contains a "m_toys" member variable that is an array of pointers to Toy objects. 
+Similarly, there's a "m_tCount" member variable that describes the size of this array. As such, 
+it can be said that the Child class 'has-a' collection of toys. This means that any instance of the 
+Child class will have an associated set of Toy objects.
+
+What is the relationship between Child and the array of pointers:
+
+>The Child class's m_toys member variable is an array of pointers to Toy objects, forming a connection 
+between the two. To properly manage the memory usage, there are corresponding member functions such as 
+copy constructor, copy assignment operator, destructor, move constructor and move assignment operator 
+in the Child class.
+
+Explain  what is the relationship between ConfirmOrder and Toy:
+
+>ConfirmOrder maintains a dynamically allocated array of pointers to objects of type Toy, which means that 
+ConfirmOrder has access to the objects inside of that Toy array and can modify the array. However, 
+ConfirmOrder does not manage the memory allocation for the objects of type Toy themselves. 
+Instead, ConfirmOrder stores the addresses of the objects in the dynamically allocated array 
+and can add or remove toys from the array, but it does not create or destroy the objects of 
+type Toy themselves.
+
+What is the relationship between ConfirmOrder and the array of pointers:
+ 
+>ConfirmOrder is responsible for managing an array of pointers pointing to Toy objects. 
+This array must be correctly allocated and deallocated, and its size must be accurately tracked. 
+Moreover, ConfirmOrder must guarantee that any changes made to the array do not alter the linked 
+Toy objects themselves, but only the pointers inside of the array in question. 
+
+----------------------------------------Composition-------------------------------------------------
+>In Composition, the 'Composite' class owns the 'Component' class and the life cycle of 
+the component class is tightly bound to the composite class. If the composite class is destroyed, the component 
+class is also destroyed. This is a strong relationship and the component class cannot exist independently 
+of the composite class.
+
+Child and Toy Relationship:
+
+>This relationship can be seen as composition as the Child class has a dynamically allocated array 
+of pointers to objects of type Toy and the life cycle of the objects of type Toy is tightly bound 
+to the objects of type Child. If an object of type Child is destroyed, the objects of type Toy 
+associated with it will also be destroyed.
+
+-----------------------------------------Aggregation-----------------------------------------------
+>In aggregation, the 'Aggregator' class has a reference to the 'Aggregate' class but 
+the life cycle of the aggregate class is independent of the aggregator class. The aggregator class does not 
+own the aggregate class, rather it has a reference to it. This is a weak relationship and the aggregate
+class can exist independently of the aggregator class.
+
+ConfirmOrder and Toy Relationship:
+
+>This relationship can be seen as aggregation as the ConfirmOrder class has a dynamically allocated 
+array of pointers to objects of type Toy but the life cycle of the objects of type Toy is not dependent 
+on the objects of type ConfirmOrder. If an object of type ConfirmOrder is destroyed, the objects of 
+type Toy will still exist.
+
+
+-----------------/Move and copy functions in a composition and an aggregation/------------------------------
+
+Composition:
+
+>In a composition relationship, the composed class (i.e. Child) owns the resources (i.e. objects of type Toy) 
+and is responsible for their creation and destruction. 
+
+>The move constructor and move assignment operator should transfer ownership of the resources from the source 
+object to the target object (m_toys = src.m_toys;) , leaving the source object in a valid but unspecified 
+state (src.m_toys = nullptr;). The copy constructor and copy assignment operator should create new objects 
+of type Toy (m_toys[i] = new Toy{ *src.m_toys[i] }) and transfer ownership to the target object, without 
+affecting the source object.
+
+Aggregation:
+
+>In an aggregation relationship, the aggregating class (i.e. ConfirmOrder) does not own the resources 
+(i.e. objects of type Toy) and is merely keeping track of a set of references to the resources.
+
+>The move constructor and move assignment operator should transfer ownership of the references from the source 
+object to the target object(m_toys = src.m_toys;), leaving the source object in a valid but unspecified state 
+(src.m_toys = nullptr;). 
+The copy constructor and copy assignment operator should create new references to the same resources
+(m_toys[i] = src.m_toys[i];), without affecting the resources themselves or other references to the 
+same resources.
+
+-------------//Move Operator and Move Constructor in Composition and Aggregation//----------------------------
+
+The move constructor's and assignment operator's behavior is independent of an object's composition or aggregation status. 
+They focus on transferring ownership of a resource from one object to another, while the concepts of composition and 
+aggregation are related to how objects are organized in relation to each other. In other words, the move constructor and 
+assignment operator only apply to individual objects regardless of their connection with others and remain unchanged 
+regardless if the object is a composition or an aggregation. These mechanisms are solely for passing resource ownership 
+between objects, unmoved by their relationship.
