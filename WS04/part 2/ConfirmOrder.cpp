@@ -18,12 +18,14 @@ namespace sdds {
 	}
 	ConfirmOrder& ConfirmOrder::operator=(const ConfirmOrder& src) {
 		if (this != &src) {
-			delete[] m_toys;
-			m_toys = new const Toy * [src.m_size];
-			for (size_t i = 0; i < src.m_size; i++) {
-				m_toys[i] = src.m_toys[i];
+			if (src.m_size != 0) {
+				delete[] m_toys;
+				m_toys = new const Toy * [src.m_size];
+				for (size_t i = 0; i < src.m_size; i++) {
+					m_toys[i] = src.m_toys[i];
+				}
+				m_size = src.m_size;
 			}
-			m_size = src.m_size;
 		}
 		return *this;
 	}
@@ -41,29 +43,30 @@ namespace sdds {
 		return *this;
 	}
 	ConfirmOrder& ConfirmOrder::operator+=(const Toy& toy) {
-		bool found = false;
 		for (size_t i = 0; i < m_size; i++) {
 			if (&toy == m_toys[i]) {
-				found = true;
+				return *this;
 			}
 		}
-		if (!found) {
-			const Toy** temps = new const Toy * [m_size + 1];
-			for (size_t i = 0; i < m_size; i++) {
-				temps[i] = m_toys[i];
-			}
-			delete[] m_toys;
-			m_toys = temps;
-			temps[m_size] = &toy;
-			m_size++;
+		const Toy** temps = new const Toy * [m_size + 1];
+		for (size_t i = 0; i < m_size; i++) {
+			temps[i] = m_toys[i];
 		}
+		delete[] m_toys;
+		temps[m_size] = &toy;
+		m_toys = temps;
+		m_size++;
 		return *this;
 	}
 	ConfirmOrder& ConfirmOrder::operator-=(const Toy& toy) {
-		for (size_t i = 0; i < 5; i++) {
-			if (&toy == m_toys[i]) {
-				m_toys[i] = nullptr;
-				m_size--;
+		for (size_t i = 0; i < m_size; i++) {
+			if (m_toys[i] == &toy) { //loops through all toy pointers inside of array
+				for (size_t j = i; j < m_size - 1; j++) { //if a similiar toy is found store that index into value j 
+					m_toys[j] = m_toys[j + 1]; //shift all remaining values to the left effectivley making the found index the last member 
+				}
+				m_size--; // decrements m_size value
+				m_toys[m_size] = nullptr; //makes the last member into a nullptr.
+				return *this; //made this so it doesnt unecessarily loop 
 			}
 		}
 		return *this;

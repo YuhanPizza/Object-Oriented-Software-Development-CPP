@@ -34,20 +34,22 @@ namespace sdds {
     // Copy Assignment Operator
     Child& Child::operator=(const Child& src) { //copy assignment operator
         if (this != &src) { //if it is not a copy of itself
-            if (m_toys) { //if toy is not in an empty state
-                for (size_t i = 0; i < m_tCount; i++) {
-                    delete m_toys[i];
-                    m_toys[i] = nullptr;
+            if (src.m_tCount > 0) {
+                if (m_toys) { //if toy is not in an empty state
+                    for (size_t i = 0; i < m_tCount; i++) {
+                        delete m_toys[i];
+                        m_toys[i] = nullptr;
+                    }
+                    delete[] m_toys; //delete
+                    m_toys = nullptr;
                 }
-                delete[] m_toys; //delete
-                m_toys = nullptr;
-            }
-            m_cName = src.m_cName; //assigns value given in parameter
-            m_age = src.m_age;
-            m_tCount = src.m_tCount;
-            m_toys = new const Toy * [m_tCount];
-            for (size_t i = 0; i < m_tCount; i++) { //individual toy objects inside of toy array
-                m_toys[i] = new Toy{ *src.m_toys[i] };
+                m_cName = src.m_cName; //assigns values
+                m_age = src.m_age;
+                m_tCount = src.m_tCount;
+                m_toys = new const Toy * [m_tCount];
+                for (size_t i = 0; i < m_tCount; i++) { //individual toy objects inside of toy array
+                    m_toys[i] = new Toy{ *src.m_toys[i] };
+                }
             }
         }
         return *this;
