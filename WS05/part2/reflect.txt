@@ -1,0 +1,91 @@
+/*
+*****************************************************************************
+			Workshop - #5
+Full Name  :Lorenz Alvin Tubo
+Student ID#:109934224
+Email      :ltubo@myseneca.ca
+
+Authenticity Declaration:
+I have done all the coding by myself and only copied the code that my
+professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+
+To Do:
+Q1.The difference between the implementations/utilizations of a 
+functor and a lambda expression. When is appropriate to use each one?
+
+>Lambda expressions and functors are both ways to define anonymous functions in C++, 
+ but they have some differences in terms of syntax and usage.
+----------------------------/Lambda/-------------------------------------------------
+A lambda expression is a shorthand way of defining an anonymous function inline(similar to a js arrow function). 
+It is defined using the "[]" symbol, followed by the argument list (if any) and 
+the function body, which can be a single expression or a block of statements. 
+The resulting object can be called just like any other function(like a js arrow function).
+Basically an object that is a function.
+
+------------------------/Functor/----------------------------------------------------
+A functor, on the other hand, is a class that overloads the function call operator "()" to make it behave like 
+a function. It can have member variables and functions, and can be customized using constructor arguments.
+It is a class with an overloaded set operator '()'. It still has its own attributes and other functions aswell.
+
+-----------------------/Differences/----------------------------------------
+1.Lambdas are typically used for simple, short-lived functions that don't need any state or complex behavior, 
+while functors are more flexible and can be used for more complex tasks, including maintaining state across multiple calls.
+For instance the the SpellChecker had member variables and other functions besides its overloaded set operator '()' 
+(void SpellChecker::operator()(std::string& text);).
+
+2.Lambdas may be more efficient than functors in some cases, as they can be inlined by the compiler and don't 
+require any dynamic memory allocation. However, this depends on the specific use case and the implementation details.
+The 'auto updatePrice = [&](Book& book)' lambda was only called within W5_p2.cpp and was never called in any other parts
+of the Program. 
+ 
+Q2.The constructor for SpellChecker generates an exception in certain 
+conditions. How would you change your code to achieve the same result, 
+but without exceptions (both on the constructor and on the client side)? Compare the two solutions.
+
+>I will add a new boolean member variable called m_initialized for the SpellChecker and set it to false if the file 
+ cannot be opened. We could make a function to check the value of m_initalized and send a display depending if its true 
+ or false.
+ SpellChecker::SpellChecker(const char* filename){
+     std::ifstream file(filename);
+     if (!file.is_open()) {
+         m_initialized = false;
+     }
+     else{
+ 	etc... 
+ 	m_initialized = true;
+     }
+     }
+ } 
+-----------------------------------/Client/--------------------------------------------------------------------
+    SpellChecker sc(filename);
+    if (!sc.isInitialized()) {
+        std::cerr << "Bad File name " << filename << std::endl;
+    }
+>This modified implementation without exceptions allows for more fine-grained error handling and better control flow.
+ We can now gracefully handle errors and take appropriate action in the client code. However, the modified implementation 
+ requires more explicit error checking and handling in the client code, which can be more error-prone.
+
+Q3.The classes Movie and Book contain almost identical logic in loading data from the 
+file. How would you redesign the classes in order not to duplicate that logic?
+>To avoid duplicating identical logic from Book and Movie used to load data from the file
+ We could create a parent/base class where these 2 classes can inherit a the loading data from and just
+ override it(because they have different number of members) not only that but also other similar 
+ functionalities can also be inherited and overriden.  
+
+
+Q4.The classes Movie and Book are instantiated from the main() function using a 
+custom constructor, but they also contain a default constructor. Is the default 
+constructor necessary? Could you remove it? Justify your answer.
+
+>The default constructors are not necessary for the Movie and Book (i set them to default) because its the custom constructors
+ that take arguments that can be used to create instances of these classes.
+
+>However, I think it still might be necessary to keep default constructors.
+ Default Constructors are convienient in cases where you dont have all the necessary information available when creating 
+ an instance.
+
+>But in this specific workshop the default constructor does not have any extra functionality so it can be safely removed
+ without affecting the functionailty of the program. If there was a need for any special initialization or default 
+ values to be set for the class variables, then a default constructor could be needed.
