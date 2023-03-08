@@ -1,0 +1,101 @@
+/*
+*****************************************************************************
+			Workshop - #6
+Full Name  :Lorenz Alvin Tubo
+Student ID#:109934224
+Email      :ltubo@myseneca.ca
+
+Authenticity Declaration:
+I have done all the coding by myself and only copied the code that my
+professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+Q1.Why do you need to deallocate the dynamically allocated memory in your vector?
+ > Yes, it is always recommended to deallocate dynamically allocated memory in a vector.
+   Failing to do so can lead to memory leaks, which can cause your program to consume more 
+   and more memory until it eventually crashes or runs out of memory.
+ > Because it is necessary to deallocate the dynamically allocated memory in the 
+   std::vector<Person*> m_persons in the destructor of College class. This is because 
+   the College class is the owner of the Person objects pointed to by the pointers stored 
+   in the vector, and it is responsible for deallocating them.
+ > In the case of the vector m_persons in the College class, it holds pointers to dynamically 
+   allocated Person objects, so it is important to deallocate the memory pointed to by those 
+   pointers in the destructor of the College class to avoid memory leaks.
+
+
+Q2.When building an object from the input file, different things can go wrong: the record 
+   represents an unknown type of person, or record contains invalid data. How can the 
+   function loadData() detect what went wrong? Can you think at another solution than 
+   the one you have implemented?
+
+ > I implemented the error handling in the 'loadData()' function by using try-catch blocks.
+   Specifically, you have wrapped the code that creates a new 'Person' object in a try block, which 
+   may throw an exception if there is an error while extracting data from the input file.
+   If an exception is thrown, I then caught it in the corresponding catch block. If the exception type 
+   is `const std::string&`, I appended the error message to the error string variable if the exception type 
+   is anything else, I output an error message to `std::cerr`. Also if error is not empty then i output the 
+   contents to `std::cerr`.
+
+  Different Approach:
+ > Instead of throwing exceptions or appending error messages to a string, we could use a boolean error flag
+   to indicate wheather an error occurred. for example, we could define a `bool` variable called `error` that is
+   initalized to false at the begining of the function and If an error occurs during the processing of a record,
+   we could set `error` to true at the end of the function we could check the value of error and print an appropriate
+   error message with errorMsg.
+
+sdds::Person* thePerson = nullptr;
+    bool error = false;
+    string errorMsg;
+    while (file)
+    {
+        try {
+            thePerson = sdds::buildInstance(file);
+            if (thePerson)
+                theCollege += thePerson;
+        }
+        catch (const std::string& e) {
+            error = true;
+            errorMsg += e;
+        }
+    }
+    if (error) {
+       std::cout << errorMsg <<"\n";
+    }
+}
+
+
+
+Q3.In this workshop you had to use std::list<sdds::Person*> and std::vector<sdds::Person*> 
+   to store a collection of persons as pointers. Could you have used std::list<sdds::Person> 
+   and std::vector<sdds::Person> instead? Justify your answer!
+
+ > While it is possible to use std::list<sdds::Person> and std::vector<sdds::Person> instead 
+   of using pointers to store a collection of persons, but there are some trade-offs to consider.
+   Using std::list<sdds::Person> and std::vector<sdds::Person> means that we don't have to manage 
+   the memory allocation and deallocation of the persons ourselves. This can make the code simpler 
+   and reduce the risk of memory leaks or errors. Additionally, it can improve performance by reducing 
+   the overhead of allocating and deallocating memory.
+   However, using std::list<sdds::Person> and std::vector<sdds::Person> means that we are storing 
+   copies of the persons, rather than pointers to the original objects. This can be a problem if we 
+   need to modify the original objects or if we want to share the same objects between different parts 
+   of the code. Additionally, storing copies of the objects can lead to slower performance if the objects 
+   are large or if we need to copy them frequently.
+
+Conclusion:
+Therefore, the choice of using pointers versus copying the objects depends on the specific needs of the 
+program. If we need to modify the original objects or share them between different parts of the code, 
+using pointers is necessary. If we don't need to modify the objects and performance is a concern, 
+copying the objects might be a better choice.
+
+Additional Summaries:
+`std::stringstream is a class in C++ that allows for the manipulation of strings as if they were input/output streams. 
+It provides functionality to read from and write to strings using the same operators as input/output streams like << and >>.
+reference:
+cplusplus.com. (n.d.). stringstream. Retrieved March 8, 2023, from https://cplusplus.com/reference/sstream/stringstream/
+
+My Own Understaiding:
+In this workshop we used `std::stringstream` to extract data from a single string and then split it into separate values in 
+the function `Person* buildInstance(std::istream& in)`.
+This allowed for the creation of a new `Employee`, new `Professor` or new `Student` 
+by using  getline(ss, tag, ',') and then using a switch to check for the first value of that tag[0] with its 
+corresponding case in turn creating one of the three by passing the stringstream object in the constructor. 

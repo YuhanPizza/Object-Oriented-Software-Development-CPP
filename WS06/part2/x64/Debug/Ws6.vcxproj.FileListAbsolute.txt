@@ -1,0 +1,3 @@
+C:\Users\loren\OneDrive\Desktop\Ws6\x64\Debug\Ws6.exe
+C:\Users\loren\OneDrive\Desktop\Ws06\part2\x64\Debug\Ws6.exe
+C:\Users\loren\OneDrive\Desktop\OOP345\Workshops\Workshops\Ws06\part2\x64\Debug\Ws6.exe
