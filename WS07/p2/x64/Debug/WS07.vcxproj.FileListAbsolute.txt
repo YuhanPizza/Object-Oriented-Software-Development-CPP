@@ -1,0 +1,2 @@
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS07\x64\Debug\WS07.exe
+C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS07\p2\x64\Debug\WS07.exe
