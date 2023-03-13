@@ -42,11 +42,7 @@ namespace sdds {
 		2.The end of the range to iterate over "m_goods.end()"
 		3.A lambda function that takes a single argument of the same type as the elements in the range "const BakedGood & goods" */
 		for_each(m_goods.begin(), m_goods.end(), [&os](const BakedGood& src) { //iterates over each element in the m_goods vector and applies a lambda function to each element
-			os << left << "* " << setw(10) << (src.m_type == BakedType::BREAD ? "Bread" : "Pastry") << " * ";
-			os << setw(20) << src.m_desc << " * ";
-			os << setw(5) << src.m_life << " * ";
-			os << setw(5) << src.m_count << " * ";
-			os << right << fixed << setprecision(2) << setw(8) << src.m_price << " * " << endl;
+			os << src << endl;
 		});
 		// Specifically, the capture list `[&]` means that all variables referenced inside the lambda function will be captured by reference. 
 		// This allows the lambda function to access and modify variables from the outer scope.
@@ -54,25 +50,33 @@ namespace sdds {
 		os << right << totalStock << endl;
 		os << left << "Total Price: ";
 		os << right <<  fixed << setprecision(2) << totalPrice << endl;
+		
 	}
 	void Bakery::sortBakery(const string& field) {
-		sort(m_goods.begin(), m_goods.end(), [&field](BakedGood a, BakedGood b) {
-			if (field == "Description") {
+		if (field == "Description") {
+			std::sort(m_goods.begin(), m_goods.end(), [](const BakedGood& a, const BakedGood& b) {
 				return a.m_desc < b.m_desc;
-			}
-			else if (field == "Shelf") {
-				return a.m_life < b.m_life;
-			}
-			else if (field == "Stock") {
-				return a.m_count < b.m_count;
-			}
-			else if (field == "Price") {
-				return a.m_price < b.m_price;
-			}
-			else {
-				return false;
-			}
 			});
+		}
+		else if (field == "Shelf") {
+			std::sort(m_goods.begin(), m_goods.end(), [](const BakedGood& a, const BakedGood& b) {
+				return a.m_life < b.m_life;
+			});
+		}
+		else if (field == "Stock") {
+			std::sort(m_goods.begin(), m_goods.end(), [](const BakedGood& a, const BakedGood& b) {
+				return a.m_count < b.m_count;
+			});
+		}
+		else if (field == "Price") {
+			std::sort(m_goods.begin(), m_goods.end(), [](const BakedGood& a, const BakedGood& b) {
+				return a.m_price < b.m_price;
+			});
+		}
+		else {
+			throw "Error: Invalid input!";
+		}
+		// assign the sorted vector back to the original vector
 	}
 	vector<BakedGood> Bakery::combine(const Bakery& other) {
 		vector<BakedGood> result(m_goods.begin(), m_goods.end());
