@@ -1,7 +1,20 @@
+/*
+*****************************************************************************
+			Workshop - #7
+Full Name  :Lorenz Alvin Tubo
+Student ID#:109934224
+Email      :ltubo@myseneca.ca
+
+Authenticity Declaration:
+I have done all the coding by myself and only copied the code that my
+professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
 #include "Bakery.h"
 #include <iomanip>
 #include <iostream>
 #include <fstream>
+#include <numeric> //needed to use accumulate
 
 using namespace std;
 
@@ -31,18 +44,18 @@ namespace sdds {
 	}
 	void Bakery::showGoods(ostream& os)const {
 		//calculate the total stock and price of goods
-		size_t totalStock = 0;
-		double totalPrice = 0;
-		for (const auto& goods : m_goods) {
-			totalStock += goods.m_count;
-			totalPrice += goods.m_price;
-		}
+		size_t totalStock = accumulate(m_goods.begin(), m_goods.end(), 0, [](size_t sum, const BakedGood& goods) {
+			return sum + goods.m_count;
+			});
+		double totalPrice = accumulate(m_goods.begin(), m_goods.end(), 0.0, [](double sum, const BakedGood& goods) {
+			return sum + goods.m_price;
+			});
 		/*The for_each function takes three arguments :
 		1.The beginning of the range to iterate over "m_goods.begin()"
 		2.The end of the range to iterate over "m_goods.end()"
 		3.A lambda function that takes a single argument of the same type as the elements in the range "const BakedGood & goods" */
 		for_each(m_goods.begin(), m_goods.end(), [&os](const BakedGood& src) { //iterates over each element in the m_goods vector and applies a lambda function to each element
-			os << src << endl;
+			os << src <<" " << endl;
 		});
 		// Specifically, the capture list `[&]` means that all variables referenced inside the lambda function will be captured by reference. 
 		// This allows the lambda function to access and modify variables from the outer scope.
@@ -54,47 +67,48 @@ namespace sdds {
 	}
 	void Bakery::sortBakery(const string& field) {
 		if (field == "Description") {
-			std::sort(m_goods.begin(), m_goods.end(), [](const BakedGood& a, const BakedGood& b) {
+			sort(m_goods.begin(), m_goods.end(), [](const BakedGood& a, const BakedGood& b) {
 				return a.m_desc < b.m_desc;
 			});
 		}
 		else if (field == "Shelf") {
-			std::sort(m_goods.begin(), m_goods.end(), [](const BakedGood& a, const BakedGood& b) {
+			sort(m_goods.begin(), m_goods.end(), [](const BakedGood& a, const BakedGood& b) {
 				return a.m_life < b.m_life;
-			});
+				});
 		}
 		else if (field == "Stock") {
-			std::sort(m_goods.begin(), m_goods.end(), [](const BakedGood& a, const BakedGood& b) {
+			sort(m_goods.begin(), m_goods.end(), [](const BakedGood& a, const BakedGood& b) {
 				return a.m_count < b.m_count;
-			});
+				});
 		}
 		else if (field == "Price") {
-			std::sort(m_goods.begin(), m_goods.end(), [](const BakedGood& a, const BakedGood& b) {
+			sort(m_goods.begin(), m_goods.end(), [](const BakedGood& a, const BakedGood& b) {
 				return a.m_price < b.m_price;
-			});
+				});
 		}
 		else {
 			throw "Error: Invalid input!";
 		}
 		// assign the sorted vector back to the original vector
 	}
-	vector<BakedGood> Bakery::combine(const Bakery& other) {
-		vector<BakedGood> result(m_goods.begin(), m_goods.end());
-		result.insert(result.end(), other.m_goods.begin(), other.m_goods.end());
-		sort(result.begin(), result.end(), [&]( BakedGood& a, BakedGood& b) {
+	vector<BakedGood> Bakery::combine(Bakery& other) {
+		vector<BakedGood> result(m_goods.size() + other.m_goods.size());
+		(*this).sortBakery("Price");
+		other.sortBakery("Price");
+		merge(m_goods.begin(), m_goods.end(), other.m_goods.begin(), other.m_goods.end(), result.begin(),[](const BakedGood a, const BakedGood b) {
 			return a.m_price < b.m_price;
 			});
 		return result;
 	}
 	bool Bakery::inStock(const string& desc, const BakedType& type) const {
-		return any_of(m_goods.begin(), m_goods.end(), [&desc, type](const BakedGood& bg) {
+		return any_of(m_goods.begin(), m_goods.end(), [desc, type](const BakedGood& bg) {
 			return bg.m_desc == desc && bg.m_type == type && bg.m_count > 0;
 			});
 	}
 
 	list<BakedGood> Bakery::outOfStock(const BakedType& type) const {
 		list<BakedGood> result;
-		copy_if(m_goods.begin(), m_goods.end(), std::back_inserter(result), [&type](const BakedGood& bg) {
+		copy_if(m_goods.begin(), m_goods.end(), std::back_inserter(result), [type] (const BakedGood& bg) {
 			return bg.m_type == type && bg.m_count == 0;
 			});
 		return result;

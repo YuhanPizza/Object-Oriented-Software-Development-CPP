@@ -1,2 +1,14 @@
 ﻿  Bakery.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\include\numeric(25,1): warning C4267: '=': conversion from 'size_t' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\loren\OneDrive\Desktop\OOP345\Workshops\Workshops\WS07\p2\Bakery.cpp(49): message : see reference to function template instantiation '_Ty std::accumulate<std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<sdds::BakedGood>>>,int,sdds::Bakery::showGoods::<lambda_1>>(const _InIt,const _InIt,_Ty,_Fn)' being compiled
+          with
+          [
+              _Ty=int,
+              _InIt=std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<sdds::BakedGood>>>,
+              _Fn=sdds::Bakery::showGoods::<lambda_1>
+          ]
   WS07.vcxproj -> C:\Users\loren\OneDrive\Desktop\OOP345\Workshops\Workshops\WS07\p2\x64\Debug\WS07.exe

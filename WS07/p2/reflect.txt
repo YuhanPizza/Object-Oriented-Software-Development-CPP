@@ -1,0 +1,150 @@
+/*
+*****************************************************************************
+			Workshop - #7
+Full Name  :Lorenz Alvin Tubo
+Student ID#:109934224
+Email      :ltubo@myseneca.ca
+
+Authenticity Declaration:
+I have done all the coding by myself and only copied the code that my
+professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+
+1. list all the STL functions that you have used in this workshop; explain your reasoning for 
+choosing each one, and not another ?
+
+a.std::for_each: This function is used to apply a lambda function to each element in the m_goods vector in Bakery::showGoods(ostream& os)const function.
+> m_goods.begin() and m_goods.end(): These iterators define the range of elements to iterate over. 
+  In this case, the range is the entire m_goods vector.
+  A lambda function will be applied to each element in the range. The lambda function is defined in the workshop
+  with the following syntax [&os](const BakedGood& src) { os << src <<" " << endl; };
+  it takes a const BakedGood& parameter which represents each element in the container and a reference to an output
+  stream object `os` which will be used to print the output. Inside the lambda function the os output stream is used to print 
+  the contents of each element of the countainer.
+
+> I believe for_each is a suitable algorithm for this code because it is designed to apply a function to every element in a range 
+  however, there are other algorithms in the STL that can be used depending on the specific requirements of the program.
+  you could use std::copy(m_goods.begin(), m_goods.end(), std::ostream_iterator<BakedGood>(os, " "));
+  This function copies the elements from the input range to the output range. It can be used to copy the elements of 
+  m_goods to a different container or output stream.
+
+b.std::sort: This function is used to sort the m_goods vector based on a specific field in Bakery::sortBakery(const string& field) function.
+> the sort function is called multiple times, each time with a different lambda function that specifies how to compare two BakedGood objects based on the specified 
+  field. The sort function uses these comparison functions to rearrange the elements of the vector in ascending order based on the specified field.
+  or example, if field is  == "Description", the lambda function [](const BakedGood& a, const BakedGood& b) { return a.m_desc < b.m_desc; } is used to compare 
+  two BakedGood objects based on their description (m_desc) field. The sort function will use this comparison function to rearrange the elements of the vector 
+  in ascending order based on the m_desc field. If field is equal to "Shelf", "Stock", or "Price", the corresponding lambda function is used to compare 
+  two BakedGood objects based on their m_life, m_count, or m_price field, respectively, and the sort function will sort the elements of the vector accordingly.
+> In addition, the sort function allows for custom comparison functions to be specified through lambda functions, which makes it easy to sort multiple vector 
+  of objects based on different fields or criteria. That is why I believe std::sort was omptimal for the sortBakery function.
+
+c.std::merge: This function is used to merge two sorted vectors into a single sorted vector in Bakery::combine(Bakery& other) function.
+> The `merge()` function is used to unify two ordered vectors, `m_goods` of the present Bakery object and `m_goods` of the other Bakery object. 
+  Initially, `sortBakery()` is called on both this object and other object to organize each vector by the Price element. The merge() is then called with 
+  these specific arguments `m_goods.begin()` and `m_goods.end()`denoting the scope of the initial sorted vector, m_goods. `other.m_goods.begin()` and 
+  `other.m_goods.end()` identifying the span of the subsequent sorted vector and `result.begin()` representing the beginning of the output expanse where 
+  merged components will be stored. The lambda [](const BakedGood a, const BakedGood b) { return a.m_price < b.m_price; }: referencing a binary comparison 
+  function used to contrast items from both input sizes during merging duration which compares BakedGood elements' m_price field (a and b). 
+  Following completion of mergerning, result yields an ordered vector populated with elements from both respective vectors orderd by m_price field value.
+
+d.std::any_of: This function is used to check if at least one element in the m_goods vector satisfies a given condition in Bakery::inStock(const string& desc, const BakedType& type) const function.
+> the any_of function is used to check if there exists any element in the m_goods vector that satisfies a given condition. It checks if 
+  there is any element in the m_goods vector whose m_desc and m_type match the given desc and type arguments respectively, and whose m_count is greater than 0.
+
+  The any_of function takes three arguments:
+  1. The beginning of the range to iterate over, which is m_goods.begin().
+  2. The end of the range to iterate over, which is m_goods.end().
+  3. A lambda function that takes a single argument of the same type as the elements in the range, which is const BakedGood& bg in this case.
+
+  The lambda function captures the desc and type arguments by reference, and checks if the bg element satisfies the given condition using logical AND and comparison operators. 
+  The any_of function returns true if any element in the range satisfies the condition, and false otherwise.
+  Therefore, this code returns true if there is at least one element in the m_goods vector that matches the given desc and type and has a non-zero stock count.
+
+e.std::copy_if: This functions is used to copy elements from one vector to another vector based on a given condition in Bakery::outOfStock(const BakedType& type) const function.
+> It is used to create a new list of `BakedGood` objects taht are out of stock and have a specific type.
+
+  1.`copy_if` takes in 4 arguments.
+    a.`m_goods.begin()` denotes the beginning of the range.
+    b.`m_goods.end()` defines the end of the range. 
+      these 2 define the range of elements in m_goods taht will be scanned.
+    c.`back_inserter(result)` appends new elements to the `result` list.
+    d.a lambda function that takes a `const BakedGood& bg` argument and returns a boolean value based on the condition within the lambda. In this case the lambda function checks if `bg` object type is equal to
+      `type` and its count is equal to 0.
+  2.The copy_if algorithm scans through each element in the m_goods vector and applies the lambda function to it. If the lambda function returns true for a given element, that element is copied to the result 
+    list using the back_insert_iterator.
+  3.The resulting list result contains only those BakedGood objects that have the specified type and have a stock count of 0.
+  4. the result list is then returned by the function. 
+Side note :
+  std::back_inserter: This function is used as an output iterator to insert elements at the end of a container in Bakery::outOfStock(const BakedType& type) const function.
+
+g.std::accumulate: This function is used to calculate total stock and total price inside the Bakery::showGoods(ostream& os)const function.
+
+It takes in three arguments:
+1. beginning of the range to iterate oever which in this instance is `m_goods.begin()`.
+2. End of the range to iterate over, which in this case is `m_goods.end()`.
+3. an operation that takes two arguments: the accumulator or sum and an element from the range. For this code a lambda function is used as a binary operation. Two lambdas in total one for calculating
+the total stock and another for calculating the total price.
+The first accumulate `size_t totalStock = accumulate(m_goods.begin(), m_goods.end(), 0, [](size_t sum, const BakedGood& goods) { return sum + goods.m_count;});` takes an initial value of 0 for 
+the accumulator and adds up the count of each BakedGood object in the range, using the lambda function as the binary operation. This calculates the total stock of goods.
+
+The second accumulate `double totalPrice = accumulate(m_goods.begin(), m_goods.end(), 0.0, [](double sum, const BakedGood& goods) { return sum + goods.m_price;});` takes an initial value of 0.0 for 
+the accumulator and adds up the price of each BakedGood object in the range, using the lambda function as the binary operation. 
+This calculates the total price of goods.
+
+btw I needed to include the numeric library inorder to used this function. 
+
+2. present the advantages of using STL algorithms vs. implementing the functionality by yourself using loops.
+> well for starters I'd like to say it makes my fingers less tired and makes my brain not think too much. But, writing these reflections still takes a lot soo (not complaining it actually helps me 
+  read a lot and understand these functions more than just using it like how a swordsman would learn how to be a blacksmith inorder to optimize the use of the sword). here we go.
+
+  1. Reusability like for normal functions in a class that you can mention and reuse whenever a similar proceess/operation is required same goes for STL Algorithm functions.
+  Which in turn saves you a lot of time.
+  2.Code Redability: I would like to say these STL functions make the code easier to understand rather than having inconcise code. It is praticularly helpful for reading complex
+  code operations that would be difficult to implement using loops.
+
+
+3. for the sortBakery function, would anything differ in how it is implemented if the choice of collection was either 
+a vector or a list? If there is a difference what is it?
+If m_goods was a std::list<BakedGood> instead of a std::vector<BakedGood>, the sortBakery function could still be implemented using the std::list member function sort instead of std::sort. 
+The basic structure of the function would be the same, but the arguments passed to the sort function would be slightly different:
+void Bakery::sortBakery(const string& field) {
+    if (field == "Description") {
+        m_goods.sort([](const BakedGood& a, const BakedGood& b) {
+            return a.m_desc < b.m_desc;
+        });
+    }
+    else if (field == "Shelf") {
+        m_goods.sort([](const BakedGood& a, const BakedGood& b) {
+            return a.m_life < b.m_life;
+        });
+    }
+    else if (field == "Stock") {
+        m_goods.sort([](const BakedGood& a, const BakedGood& b) {
+            return a.m_count < b.m_count;
+        });
+    }
+    else if (field == "Price") {
+        m_goods.sort([](const BakedGood& a, const BakedGood& b) {
+            return a.m_price < b.m_price;
+        });
+    }
+    else {
+        throw "Error: Invalid input!";
+        }
+}
+The std::list member function sort has a similar syntax to std::sort, but it takes no arguments other than the comparison function. 
+It sorts the elements of the list in place using the same algorithm as std::sort.
+The vector and list are both container classes in the C++ Standard Library, but they have different underlying data structures and properties. 
+vector is implemented as a contiguous dynamic array, while list is implemented as a doubly-linked list. This difference in data structure 
+affects the performance of the sort algorithm and the way elements are accessed and manipulated.
+For a vector, the sort algorithm can be applied directly to the entire range of elements using the sort function with m_goods.begin() and m_goods.end(). 
+The sort algorithm can easily access the elements using random access iterators, which allows for efficient element comparisons and swaps.
+The sort algorithm needs to access the elements using bidirectional iterators, which are less efficient than random access iterators. 
+This may make the sorting process slower for large lists, as the sort algorithm needs to traverse the list multiple times to perform the necessary comparisons and swaps.
+
+
+
+
+Reference:
+Seneca College. (n.d.). Course outline: NDD OOP345. Retrieved March 16, 2023, from https://learn.senecacollege.ca/ultra/courses/_681450_1/cl/outline
