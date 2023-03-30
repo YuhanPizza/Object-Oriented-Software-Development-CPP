@@ -1,0 +1,61 @@
+/*
+*****************************************************************************
+            Workshop - #9
+Full Name  :Lorenz Alvin Tubo
+Student ID#:109934224
+Email      :ltubo@myseneca.ca
+
+Authenticity Declaration:
+I have done all the coding by myself and only copied the code that my
+professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+
+Computational complexity experiment:
+
+When we run the program with a sleep time of 1 nanosecond, the computation time will be shorter, 
+since the loop is not pausing for very long. When we run the program with a sleep time of 10 or 50 
+nanoseconds, the computation time will be longer, since the loop is pausing for longer periods of time. 
+However, the actual impact on the computation time will depend on the hardware and other factors, so the results may vary.
+
+Was there any benefit from using binary files in this workshop?
+
+Yes, there are benefits to using binary files in this code. The data stored in the file is in binary format, 
+which is more compact and efficient to read and write than text format. This can lead to faster execution time 
+when reading and writing large amounts of data.
+
+In addition, the use of binary files allows for the use of the read() and write() functions, which we specifically designed for binary data 
+and provide better performance than text input/output functions.
+
+By using binary files, the program can also avoid the overhead of parsing text, which can be significant for large datasets. 
+This can lead to more efficient use of memory and CPU resources, resulting in improved performance.
+
+Finally, binary files provide a convenient way to store and retrieve complex data structures in their raw format, 
+without the need for conversion or parsing. This can simplify the implementation of the program and make it 
+easier to maintain and modify in the future.
+
+
+Why would be important to bind a function to its arguments, and how was it useful in this workshop?
+
+Binding a function to its arguments means that some of the arguments of the function are fixed or bound, 
+and the remaining arguments can be supplied later. This can be useful in cases where we want to reuse a 
+function and if some of its arguments are already determined, and we want to pass only the remaining arguments later.
+In the workshop, binding is used to fix the first three arguments of the computeAvgFactor and computeVarFactor 
+functions using std::bind. The placeholders are used to indicate the positions of the arguments that will be passed later. 
+These functions are then passed to the std::thread constructor, which creates threads to execute the functions in parallel.
+By binding the functions to their arguments, we can pass them to the std::thread constructor without needing to repeat the common arguments 
+`total_items` for each thread. This reduces the amount of code and makes it easier to manage the arguments. 
+In addition, binding allows us to reuse the same function with different values of arr, size, and divisor for different calls of the function.
+Binding a function to its arguments can make the code more efficient, modular, and easier to read and maintain.
+
+What are the advantages of using multiple threads, and how did you accomplished multi-threading in this workshop?
+
+1. Using multiple threads enables a program to execute multiple tasks simultaneously, which leads to increased rate of data delivery time.
+2. By using multiple threads, programs can reduce the time it takes to execute a task. 
+3. Improved responsiveness, meaning that  program can respond more quickly to user input by using multiple threads which can help with improved responsiveness.
+4. A program can utilize resources more effectively, which can significantly improve preformance.
+
+In this workshop, multi-threading is accomplished by dividing the data array into equal partitions(depending on the number of threads). and running each partition
+in a separate thread. The code uses the std::thread library to create threads, and the std::bind function to pass arguments to the thread function. The computeAvgFactor
+and computeVarFactor functions are run on separate threads to calculate the average and variance of each partition of the data array. The results are then combined to 
+calculate the average variance of the entire data array.
