@@ -1,0 +1,78 @@
+/*
+*****************************************************************************
+            Workshop - #8
+Full Name  :Lorenz Alvin Tubo
+Student ID#:109934224
+Email      :ltubo@myseneca.ca
+
+Authenticity Declaration:
+I have done all the coding by myself and only copied the code that my
+professor provided to complete my workshops and assignments.
+*****************************************************************************
+*/
+
+Q1. Why could we not use a unique_ptr in your Database class?
+
+In this Workshop, it is not possible to use a unique_ptr in the Database class
+because unique_ptr cannot be copied. The Database class requires copying because the 
+instance variable is shared across different scopes of the program, and we want to 
+ensure that there is only one instance of Database at a time.
+
+To ensure that there is only one instance of Database and to allow sharing of that 
+instance across different scopes, we use a std::shared_ptr instead. The shared_ptr 
+allows for multiple copies of the pointer to exist while ensuring that the underlying 
+object is destroyed only when there are no more references to it.
+
+Q2.what changes you had to make in part 1 to transform the class into a templated one?
+
+I made the following changes:
+
+I added a template declaration at the beginning of the class definition. specifying its template parameter T.
+Replaced the hard coded data type std::string with the template parameter T wherever it was used in the class.
+I templated the class and specialized it for long long and string depending on the type of value of the 
+member variable m_value. created different specializations depending on its data type.
+
+Q3.a class that allows only one instance to be created is called a singleton. 
+Can you think at another way to create a singleton without using static members? How would that object be managed?
+
+Yes, there is another way to create a singleton without using static members, and that is by using a function-scope 
+static variable in a function that returns a reference to the single instance.
+
+In order to implement this, the function returns a reference to a function-scope static variable instance. 
+This variable is initialized only once when the function is first called, and the same instance is returned every 
+time the function is called subsequently.
+
+The object is managed automatically by the C++ runtime environment. The object is created on the first call to 
+the function and destroyed when the program terminates.
+
+
+Q4.the class Database has a resource attribute (the database instance), 
+yet no copy/move operations were implemented. Is that a bug (justify your answer)?
+In the workshop, making the instance attribute of the Database class static and using a shared_ptr to manage it is a 
+way to ensure that only one instance of Database exists throughout the program. This design pattern is called the 
+Singleton pattern, which is used to restrict the instantiation of a class to one object.
+
+Since there is only one instance of the Database class, it does not make sense to provide copy/move operations. 
+Copying or moving the instance attribute would create a new instance of the Database class, which would violate 
+the intended behavior of the Singleton pattern.
+
+Therefore, in the context of the Singleton pattern, it is not a bug that no copy/move operations are provided 
+in the Database class. It is a deliberate design choice to ensure that the Singleton pattern is correctly implemented.
+
+Q5.We said that the class Database can be instantied only once, yet in the output we see that the custom 
+constructor is called twice (same for the destructor). Explain.
+It appears that the custom constructor and destructor are being called twice because there are two instances 
+of the Database class being created.
+
+Even though we have implemented the Singleton pattern in the Database class to restrict the instantiation of 
+the class to only one object, it's still possible for a programmer to create another instance of the class if 
+they explicitly try to do so.
+
+In the provided code, the main function creates two instances of the Database class, which leads to the custom 
+constructor and destructor being called twice each time.
+
+To ensure that only one instance of the Database class is created, we need to modify the code to prevent any 
+other instances from being created. One way to do this is to make the constructor of the Database class private, 
+so that it can only be called from within the class itself. Additionally, we can provide a static method that 
+returns the singleton instance of the Database class. This approach ensures that only one instance of the class 
+is created and used throughout the program.

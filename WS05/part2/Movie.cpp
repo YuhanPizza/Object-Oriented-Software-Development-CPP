@@ -40,6 +40,11 @@ namespace sdds {
             fixSpacing(M_description);
         }
     }
+    //private member function for cleaning up leading and trailing spaces
+    void Movie::fixSpacing(std::string& str) {
+        str.erase(0, str.find_first_not_of(" ")); //erase leading spaces from index 0 of the string to the first not of space
+        str.erase(str.find_last_not_of(" ") + 1); //erase trailing spaces +1 from the location of last not space
+    }
 
     std::ostream& operator<<(std::ostream& os, const Movie& movie) { //format for ostream 
         os << std::right << std::setw(40) << movie.M_title
@@ -47,9 +52,5 @@ namespace sdds {
             << " | " << movie.M_description << std::endl;
         return os;
     }
-    //private member function for cleaning up leading and trailing spaces
-    void Movie::fixSpacing(std::string& str) {
-        str.erase(0, str.find_first_not_of(" ")); //erase leading spaces from index 0 of the string to the first not of space
-        str.erase(str.find_last_not_of(" ") + 1); //erase trailing spaces +1 from the location of last not space
-    }
+    
 };

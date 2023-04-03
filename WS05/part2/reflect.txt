@@ -67,6 +67,19 @@ but without exceptions (both on the constructor and on the client side)? Compare
  We can now gracefully handle errors and take appropriate action in the client code. However, the modified implementation 
  requires more explicit error checking and handling in the client code, which can be more error-prone.
 
+------------------------------------------//Alternative//-------------------------------------------------------
+It has come to my attention after more reading that you can also use std::cerr<<"Bad file name" and then exit(1);
+'cerr' is an output stream object that is used to output error messages to the standard error stream. It will then
+print out an error message taht will be seen by the user "Bad file name". 
+'exit' is a function that terminates the program and returns a specified exit code to the operating system you can
+use this function when your program encounters an unrecoverable error.
+
+cerr and exit are used for error handling and program termination, while throw is used for exception 
+handling and program control flow.If there is zero chance that a caller can correct the cause of the error, 
+then exiting is better than throwing an exception. Otherwise if there is a way the caller can correct whatever 
+caused the error, then it is better to use an exception it will still cause termuination if the caller doesnt have
+a matching catch to handle the exception.
+
 Q3.The classes Movie and Book contain almost identical logic in loading data from the 
 file. How would you redesign the classes in order not to duplicate that logic?
 >To avoid duplicating identical logic from Book and Movie used to load data from the file
@@ -89,3 +102,8 @@ constructor necessary? Could you remove it? Justify your answer.
 >But in this specific workshop the default constructor does not have any extra functionality so it can be safely removed
  without affecting the functionailty of the program. If there was a need for any special initialization or default 
  values to be set for the class variables, then a default constructor could be needed.
+
+-----------------------------//Side Note//----------------------------------------------------------------------
+Constructors that allocate dynamic memory require special attention when using try/catch blocks, as throwing an exception before 
+the object is completely built can trigger its destructor. This can result in unexpected behavior in the program and must be 
+handled carefully.

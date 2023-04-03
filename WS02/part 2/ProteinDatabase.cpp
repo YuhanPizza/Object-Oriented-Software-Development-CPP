@@ -100,7 +100,7 @@ namespace sdds {
 				delete[]p_string;
 				p_string = nullptr;
 			}
-			this->p_current = org.p_current; //explained in 77 to 81 
+			this->p_current = org.p_current; //explained in 92 to 96 
 			org.p_current = 0u;
 
 			this->p_string = org.p_string;

@@ -28,7 +28,10 @@ int main(int argc, char* argv[]) {
 	//   3: third argument
 	//   ...
 	for (auto i = 0; i < argc; ++i) {
-		std::cout.width(3); std::cout.setf(std::ios::right); std::cout << i + 1; std::cout.unsetf(std::ios::right);
+		std::cout.width(3); 
+		std::cout.setf(std::ios::right); 
+		std::cout << i + 1; 
+		std::cout.unsetf(std::ios::right);
 		std::cout<< ": " << argv[i] << std::endl;
 	}
 

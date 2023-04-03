@@ -1,1 +1,2 @@
 C:\Users\loren\OneDrive\Desktop\OOP345\New folder\Workshops\WS02\WS2P2\x64\Debug\WS2P2.exe
+C:\Users\loren\OneDrive\Desktop\OOP345\Workshops\Workshops\WS02\part 2\x64\Debug\WS2P2.exe

@@ -34,7 +34,7 @@ namespace sdds {
 	class Set<double> : public Collection<double, 100> { //double specialization
 	public:
 		bool add(const double& item) {
-			for (int i = 0; i < this->size(); i++) { //called size() aswell
+			for (int i = 0; i < size(); i++) { //called size() aswell
 				if (std::fabs((*this)[i] - item) <= 0.01) { //overloaded subscript operator found in Collection
 					//(*this)[i]; or this->operator[](i);
 					return false;// if found

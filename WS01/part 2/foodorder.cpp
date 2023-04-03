@@ -22,6 +22,7 @@ using namespace std;
 double g_taxrate = 0;
 double g_dailydiscount = 0;
 static int counter = 1;
+
 namespace sdds {
 	//sets object to safe empty state
 	void FoodOrder::safeEmpty() {

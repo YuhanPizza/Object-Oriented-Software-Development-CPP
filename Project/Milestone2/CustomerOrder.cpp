@@ -124,7 +124,7 @@ namespace sdds {
 
 		for (auto i = 0u; i < m_count; ++i) {
 			os << "[" << right << setw(6) << setfill('0') << m_items[i]->m_serialNumber << "] ";
-			os << left << setw(CustomerOrder::m_widthField) << setfill(' ') << m_items[i]->m_itemName;
+			os << left << setw(m_widthField) << setfill(' ') << m_items[i]->m_itemName;
 			os << " - " << (m_items[i]->m_isFilled ? "FILLED" : "TO BE FILLED") << endl;
 		}
 	}

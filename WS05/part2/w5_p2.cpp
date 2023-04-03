@@ -184,7 +184,7 @@ int main(int argc, char** argv)
 	//         where ERROR_MESSAGE is extracted from the exception object.
 	try {
 		for (auto i = 0u; i < 10; ++i)
-			std::cout << theCollection[i];
+			std::cout << theCollection[i]; //runs this function
 	}
 	catch (std::out_of_range& err) {
 		std::cout << "** EXCEPTION: " << err.what() << std::endl;
@@ -216,7 +216,7 @@ int main(int argc, char** argv)
 				theCollection[j].fixSpelling(sp);
 			sp.showStatistics(std::cout);
 		}
-		catch (const char* err) {
+		catch (const char* err) { //this will catch the thrown const char from spellchecker constructor
 			std::cout << "** EXCEPTION: " << err << std::endl;
 		}
 	}

@@ -18,10 +18,11 @@ professor provided to complete my workshops and assignments.
 #include "SpellChecker.h"
 
 namespace sdds{
-    SpellChecker::SpellChecker(const char* filename) {
+    SpellChecker::SpellChecker(const char* filename) { //functor object because of overloaded set operator
         // initialize the badWords and goodWords arrays from file
         std::ifstream file(filename);
         if (!file.is_open()) {
+            //The throw statement throws a user-defined exception. Execution of the current function will stop
             throw "Bad file name!"; //if file is not open throws an exception of type const char
         }
         std::string line;
@@ -40,7 +41,7 @@ namespace sdds{
         }
     }
 
-    void SpellChecker::operator()(std::string& text) {
+    void SpellChecker::operator()(std::string& text) { //this makes this a functor
         for (auto i = 0; i < SIZE; ++i) {
                     //finds bad words loops for teh first until no teh is found then the next one etc...
             while (text.find(m_badWords[i]) != std::string::npos) { //explain usage for reflection? string::npos = no-position, it is usually used to indicate 
