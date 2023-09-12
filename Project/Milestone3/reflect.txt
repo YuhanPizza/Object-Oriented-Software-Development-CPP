@@ -10,3 +10,18 @@ I have done all the coding by myself and only copied the code that my
 professor provided to complete my workshops and assignments.
 *****************************************************************************
 */
+This programming project is a great way for us students to get hands-on experience with Object Oriented Programming (OOP) 
+and learn how to use its concepts in real-world scenarios. All the necessary steps have been outlined clearly, from development 
+through debugging and finally execution - it's an excellent way to put OOP into practice. The simulation demand that we consider 
+objects, their interactions, and their behaviours within a rich yet dynamic system. What's more, there are clear expectations for 
+us to meet which provide context for our endeavours. All in all, this project offers up a fantastic opportunity to deepen our understanding of OOP principles!
+
+The project was challenging, especially the requirement to use STL algorithims instead of basic loops to follow these 
+instructions i used  for_each to during the run and display function so that the operation will be applied to each element in the range.
+ie. m_activeLine.begin() and m_activeLine.end(). 
+I also used find_if and none_of in my constructor the first find_if function is used to find the workstation pointer in the vector stations that 
+matches the item name in the record string i used it twice to find the current and the next station.
+the 2nd find_if is used to find the first station in the assembly line in combination with none_of to check if there
+is any workstation in the stations and if no such station is found it means that the current station is the first stations in the assembly line. 
+The project was more complex than the workshops, because it gave me the opportunity as a student to develop my skills further and apply them to a more challenging problem.
+

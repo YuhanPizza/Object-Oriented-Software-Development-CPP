@@ -60,18 +60,17 @@ namespace sdds {
             }
         }
         ifs.close();
-
-        m_firstStation = nullptr;
-        for (auto& station : stations) {
-            auto check  = [&stations, &station]() {
-                return std::any_of(stations.begin(), stations.end(), [&station](const auto& check_station_ptr) {
-                    return check_station_ptr->getNextStation() == station;
+        auto check = std::find_if(stations.begin(), stations.end(), [&](const Workstation* station) {
+            return std::none_of(stations.begin(), stations.end(), [&](const Workstation* other) {
+                return other->getNextStation() == station;
                 });
-            };
-            if (!check()) {
-                m_firstStation = station;
-            }
+            });
+        if (check != stations.end()) {
+            m_firstStation = *check;
         }
+        else {
+            m_firstStation = nullptr;
+        };
         if (!m_firstStation) {
             throw std::string("Unable to find the first station in the assembly line.");
         }

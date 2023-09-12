@@ -113,11 +113,10 @@ namespace sdds {
 		return true;
 	}
 
-
 	void CustomerOrder::fillItem(Station& station, std::ostream& os) {
 		for (auto i = 0u; i < m_count; ++i) {
 			if (m_items[i]->m_itemName == station.getItemName() && !m_items[i]->m_isFilled) {
-				if (station.getQuantity() != 0 ) {
+				if (station.getQuantity() != 0) {
 					station.updateQuantity();
 					m_items[i]->m_isFilled = true;
 					m_items[i]->m_serialNumber = station.getNextSerialNumber();
